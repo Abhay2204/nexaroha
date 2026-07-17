@@ -274,7 +274,7 @@ export default function Process() {
       <div className="grid-12" style={{ alignItems: "start" }}>
         
         {/* Left Column - Sticky Details Panel */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" />
             <span>Step {currentStep.num}</span>
@@ -328,7 +328,7 @@ export default function Process() {
         </div>
 
         {/* Right Column - Scrollable Timeline Steps */}
-        <div ref={containerRef} className="process-timeline">
+        <div ref={containerRef} className="process-timeline reveal-stagger">
           {/* Progress track line indicator */}
           <div className="process-timeline-line" />
           <div
@@ -366,7 +366,7 @@ export default function Process() {
       </div>
 
       {/* Bottom Highlights Row */}
-      <div className="process-bottom-highlights">
+      <div className="process-bottom-highlights reveal-stagger">
         {highlights.map((hl, index) => (
           <div key={index} className="process-hl-card">
             <div className="process-hl-icon-wrap" aria-hidden="true">

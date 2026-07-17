@@ -49,7 +49,7 @@ export default function Insights() {
   return (
     <section className="section-wrapper container">
       {/* Flat Non-Sticky Header Block */}
-      <div style={{ marginBottom: "5rem" }}>
+      <div className="reveal-fade-in" style={{ marginBottom: "5rem" }}>
         <div className="badge" style={{ marginBottom: "1.5rem" }}>
           <span className="badge-dot" />
           <span>Journal</span>
@@ -67,7 +67,7 @@ export default function Insights() {
         </h2>
       </div>
 
-      <div ref={containerRef} className="insights-list">
+      <div ref={containerRef} className="insights-list reveal-stagger">
         {posts.map((post, index) => (
           <div
             key={index}

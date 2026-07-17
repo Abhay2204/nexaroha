@@ -39,7 +39,7 @@ export default function Philosophy() {
       <div className="grid-12" style={{ alignItems: "start" }}>
         
         {/* Left Column (Sticky info panel - spans 5 columns) */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" style={{ backgroundColor: "#4800F4" }} />
             <span style={{ color: "#4800F4" }}>Our Philosophy</span>
@@ -95,8 +95,7 @@ export default function Philosophy() {
           </a>
         </div>
 
-        {/* Right Column: 3 Overlapping Vertical Editorial Cards (spans 7 columns) */}
-        <div className="philosophy-right-col">
+        <div className="philosophy-right-col reveal-stagger">
           {pillars.map((pillar, index) => (
             <div
               key={index}

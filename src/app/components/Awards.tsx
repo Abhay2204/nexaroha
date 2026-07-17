@@ -19,7 +19,7 @@ const awards: Award[] = [
 export default function Awards() {
   return (
     <section className="section-wrapper container grid-12">
-      <div className="sticky-sidebar">
+      <div className="sticky-sidebar reveal-fade-in">
         <div className="badge">
           <span className="badge-dot" />
           <span>Section 08</span>
@@ -29,7 +29,7 @@ export default function Awards() {
         </h2>
       </div>
 
-      <div className="awards-grid">
+      <div className="awards-grid reveal-stagger">
         {awards.map((award, index) => (
           <div key={index} className="award-row">
             <span className="award-platform">{award.platform}</span>

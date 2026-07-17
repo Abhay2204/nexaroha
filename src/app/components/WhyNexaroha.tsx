@@ -285,7 +285,7 @@ export default function WhyNexaroha() {
       <div className="container grid-12" style={{ borderBottom: "none" }}>
         
         {/* Left column (Sticky info panel + scaled hero composition crosshair) */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" />
             <span>Why Nexaroha</span>
@@ -345,7 +345,7 @@ export default function WhyNexaroha() {
 
         {/* Right column (3x2 Pane grid layout) */}
         <div className="why-grid">
-          <div className="why-pane-grid">
+          <div className="why-pane-grid reveal-stagger">
             {features.map((feature, index) => (
               <div key={index} className="why-pane-card">
                 <div className="why-pane-icon">{feature.icon}</div>

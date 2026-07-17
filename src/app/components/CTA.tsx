@@ -86,7 +86,7 @@ export default function CTA() {
       <div className="grid-12" style={{ alignItems: "start" }}>
         
         {/* Left Column (Sticky info panel - spans 4 columns) */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" />
             <span>Let's Work Together</span>
@@ -183,7 +183,7 @@ export default function CTA() {
         </div>
 
         {/* Middle Column - White Form Card (spans 4 columns) */}
-        <div className="cta-middle-col">
+        <div className="cta-middle-col reveal-fade-in">
           <div
             style={{
               backgroundColor: "var(--background)",
@@ -349,7 +349,7 @@ export default function CTA() {
         </div>
 
         {/* Right Column - White background floating device mockup (spans 4 columns) */}
-        <div className="cta-right-col">
+        <div className="cta-right-col reveal-fade-in">
           <div
             style={{
               position: "relative",
@@ -375,9 +375,8 @@ export default function CTA() {
 
       </div>
 
-      {/* Bottom Highlights Footer Grid (5 columns with separators) */}
       <div
-        className="highlights-strip-row light"
+        className="highlights-strip-row light reveal-stagger"
         style={{
           backgroundColor: "#f9f9fb", // Soft gray light background strip
           "--border": "rgba(0,0,0,0.06)",

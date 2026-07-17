@@ -37,7 +37,7 @@ export default function WhatWeDo() {
 
   return (
     <section id="services" className="section-wrapper container grid-12">
-      <div className="sticky-sidebar" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+      <div className="sticky-sidebar reveal-fade-in" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
         <div>
           <div className="badge">
             <span className="badge-dot" />
@@ -67,7 +67,7 @@ export default function WhatWeDo() {
         </div>
       </div>
 
-      <div className="services-list">
+      <div className="services-list reveal-stagger">
         {pillars.map((pillar, index) => (
           <div
             key={index}

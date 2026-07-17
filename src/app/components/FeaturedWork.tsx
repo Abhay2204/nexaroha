@@ -175,7 +175,7 @@ export default function FeaturedWork() {
       <div className="grid-12" style={{ alignItems: "start" }}>
         
         {/* Left Column (Sticky info panel - bounded by this parent container) */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" />
             <span>Featured Projects</span>
@@ -279,7 +279,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* Right Column (Category filters & active image mockups) */}
-        <div className="featured-work-right-col">
+        <div className="featured-work-right-col reveal-fade-in">
           
           {/* Category Filter Tabs positioned at the top right */}
           <div className="featured-work-filters-row">
@@ -363,8 +363,7 @@ export default function FeaturedWork() {
           </div>
         </div>
 
-        {/* 5 Project Columns */}
-        <div className="fw-projects-subgrid">
+        <div className="fw-projects-subgrid reveal-stagger">
           {projects.slice(1, 6).map((item, index) => {
             const actualIndex = index + 1; // Index in the projects array
             const isProjectActive = activeIndex === actualIndex;

@@ -85,7 +85,7 @@ export default function UiGallery() {
       <div className="grid-12" style={{ alignItems: "start" }}>
         
         {/* Left Column - Gallery text info & metrics (spans 4 columns) */}
-        <div className="sticky-sidebar">
+        <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" style={{ backgroundColor: "#4800F4" }} />
             <span style={{ color: "#4800F4" }}>UI/UX Gallery</span>
@@ -194,7 +194,7 @@ export default function UiGallery() {
         </div>
 
         {/* Right Column - Filters Header & Bento grid of cards (spans 8 columns) */}
-        <div className="ui-gallery-content">
+        <div className="ui-gallery-content reveal-fade-in">
           
           {/* Top header navigation filter row */}
           <div className="ui-gallery-filter-row">
@@ -256,8 +256,7 @@ export default function UiGallery() {
             </button>
           </div>
 
-          {/* Bento grid layout (pure images, fully bright, no overlapping text!) */}
-          <div className="gallery-bento-grid">
+          <div className="gallery-bento-grid reveal-stagger">
             {filteredCards.map((card, index) => (
               <div key={index} className={`gallery-bento-card ${card.spanClass}`}>
                 

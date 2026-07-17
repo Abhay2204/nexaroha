@@ -49,7 +49,7 @@ export default function Metrics() {
         Selected Metrics
       </h2>
 
-      <div className="metrics-grid">
+      <div className="metrics-grid reveal-stagger">
         {metrics.map((metric, index) => (
           <div key={index} className="metric-card">
             <div className="metric-val text-gradient">

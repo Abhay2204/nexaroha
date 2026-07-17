@@ -3562,8 +3562,9 @@ html.lenis body {
   text-align: center;
   width: 100%;
   max-width: 600px;
-  padding: 2rem;
+  padding: 3.5rem 3rem;
   color: #000000;
+  background-color: #ffffff; /* Solid white background masks grid lines underneath */
 }
 
 .loader-logo-wrap {
@@ -3793,3 +3794,47 @@ html.lenis body {
   opacity: 0;
   z-index: 3;
 }
+
+
+/* ====================================================
+   SCROLL REVEAL UTILITIES (Global & Lightweight)
+   ==================================================== */
+.reveal-fade-in {
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+
+.reveal-fade-in.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.reveal-stagger {
+  will-change: transform, opacity;
+}
+
+.reveal-stagger > * {
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: opacity, transform;
+}
+
+.reveal-stagger.revealed > * {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Stagger delays up to 10 children */
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0.05s !important; }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.12s !important; }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.19s !important; }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.26s !important; }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.33s !important; }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.40s !important; }
+.reveal-stagger.revealed > *:nth-child(7) { transition-delay: 0.47s !important; }
+.reveal-stagger.revealed > *:nth-child(8) { transition-delay: 0.54s !important; }
+.reveal-stagger.revealed > *:nth-child(9) { transition-delay: 0.61s !important; }
+.reveal-stagger.revealed > *:nth-child(10) { transition-delay: 0.68s !important; }

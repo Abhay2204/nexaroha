@@ -167,8 +167,7 @@ export default function Testimonials() {
         {/* Top columns layout: Left details text, Right white iPhone */}
         <div className="grid-12" style={{ alignItems: "center" }}>
           
-          {/* Left Column: Testimonial details (spans 6 columns) */}
-          <div className="testimonial-left-col">
+          <div className="testimonial-left-col reveal-fade-in">
             
             <div>
               <div className="badge" style={{ marginBottom: "1.5rem" }}>
@@ -293,8 +292,7 @@ export default function Testimonials() {
 
           </div>
 
-          {/* Right Column: Coded White Apple iPhone Mockup (Dynamic screen details) */}
-          <div className="testimonial-right-col">
+          <div className="testimonial-right-col reveal-fade-in">
             
             {/* White Apple iPhone bezel frame */}
             <div
