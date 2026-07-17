@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import CustomCursor from "./components/CustomCursor";
 import SchemaMarkup from "./components/SchemaMarkup";
+import Loader from "./components/Loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body>
+        <Loader />
         <a href="#main-content" className="sr-only">Skip to content</a>
         <div className="ambient-glow" aria-hidden="true" />
         <SchemaMarkup />

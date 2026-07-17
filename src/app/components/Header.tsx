@@ -22,16 +22,16 @@ export default function Header() {
   return (
     <header className={`header ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "drawer-open" : ""}`}>
       {/* Logo & Brand text */}
-      <div className="logo" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+      <div className="logo" style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
         <Image
           src="/images/logo.png"
           alt="Nexaroha Logo"
-          width={28}
-          height={28}
+          width={34}
+          height={34}
           style={{ objectFit: "contain" }}
           priority
         />
-        <span style={{ fontWeight: 650, letterSpacing: "-0.02em", fontSize: "1.25rem", color: "var(--foreground)" }}>
+        <span style={{ fontWeight: 650, letterSpacing: "-0.02em", fontSize: "1.35rem", color: "var(--foreground)" }}>
           Nexaroha
         </span>
       </div>
