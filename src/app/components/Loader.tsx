@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 
 export default function Loader() {
   const [isLoaderActive, setIsLoaderActive] = useState(true);
-  const [percent, setPercent] = useState(0);
   const [localTime, setLocalTime] = useState("");
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,24 +95,11 @@ export default function Loader() {
     // 5. Entrance of bullet points list
     tl.to(bulletsRef.current, { opacity: 1, y: 0 }, "-=0.4");
 
-    // 6. Entrance of Progress counter panel
+    // 6. Entrance of rotating loader spinner
     tl.to(progressRef.current, { opacity: 1, y: 0 }, "-=0.4");
 
-    // 7. Animate Percentage progress counter ticking directly with progress fill bar
-    const counterObj = { val: 0 };
-    tl.to(
-      counterObj,
-      {
-        val: 100,
-        duration: 1.6,
-        ease: "power2.out",
-        onUpdate: () => {
-          setPercent(Math.floor(counterObj.val));
-        },
-      },
-      "-=0.4"
-    );
-    tl.to(".loader-progress-bar-fill", { scaleX: 1, duration: 1.6, ease: "power2.out" }, "-=1.6");
+    // 7. Let it rotate/spin for a moment to showcase loading state
+    tl.to({}, { duration: 1.5 });
 
     // 8. Staged Pause to showcase loading completion
     tl.to({}, { duration: 0.6 });
@@ -270,14 +256,11 @@ export default function Loader() {
           ))}
         </ul>
 
-        {/* Ticking Percentage Counter & Bar */}
-        <div ref={progressRef} className="loader-progress-wrap">
-          <span className="loader-progress-counter">
-            {percent < 10 ? `0${percent}` : percent}%
-          </span>
-          <div className="loader-progress-bar">
-            <div className="loader-progress-bar-fill" />
-          </div>
+        {/* Rotating Loader Spinner */}
+        <div ref={progressRef} className="loader-spinner-wrap">
+          <svg className="loader-spinner-svg" viewBox="0 0 50 50">
+            <circle className="loader-spinner-circle" cx="25" cy="25" r="20" fill="none" strokeWidth="4.5" />
+          </svg>
         </div>
 
       </div>

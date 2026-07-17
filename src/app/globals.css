@@ -3715,42 +3715,48 @@ html.lenis body {
   gap: 0.4rem;
 }
 
-.loader-progress-wrap {
+.loader-spinner-wrap {
   margin-top: 2rem;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.75rem;
   opacity: 0;
   transform: translateY(20px);
 }
 
-.loader-progress-counter {
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #4800F4;
-  letter-spacing: -0.02em;
+.loader-spinner-svg {
+  width: 44px;
+  height: 44px;
+  animation: rotate-spinner 2s linear infinite;
 }
 
-.loader-progress-bar {
-  width: 120px;
-  height: 2px;
-  background-color: rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-  border-radius: 2px;
+.loader-spinner-circle {
+  stroke: #4800F4;
+  stroke-linecap: round;
+  stroke-dasharray: 1, 150;
+  stroke-dashoffset: 0;
+  animation: dash-spinner 1.5s ease-in-out infinite;
 }
 
-.loader-progress-bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(to right, #4800F4, #E100F5);
-  transform: scaleX(0);
-  transform-origin: left;
+@keyframes rotate-spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash-spinner {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
 }
 
 /* Subtle Coordinate Labels on Screen */
