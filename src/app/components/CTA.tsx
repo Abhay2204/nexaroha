@@ -183,7 +183,7 @@ export default function CTA() {
         </div>
 
         {/* Middle Column - White Form Card (spans 4 columns) */}
-        <div style={{ gridColumn: "span 4" }}>
+        <div className="cta-middle-col">
           <div
             style={{
               backgroundColor: "var(--background)",
@@ -349,7 +349,7 @@ export default function CTA() {
         </div>
 
         {/* Right Column - White background floating device mockup (spans 4 columns) */}
-        <div style={{ gridColumn: "span 4" }}>
+        <div className="cta-right-col">
           <div
             style={{
               position: "relative",
@@ -377,30 +377,14 @@ export default function CTA() {
 
       {/* Bottom Highlights Footer Grid (5 columns with separators) */}
       <div
+        className="highlights-strip-row light"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          marginTop: "6rem",
-          borderTop: "1px solid var(--border)",
-          borderBottom: "1px solid var(--border)",
-          marginLeft: "-3.5rem",
-          marginRight: "-3.5rem",
-          width: "calc(100% + 7rem)",
           backgroundColor: "#f9f9fb", // Soft gray light background strip
           "--border": "rgba(0,0,0,0.06)",
         } as React.CSSProperties}
       >
         {highlights.map((hl, index) => (
-          <div
-            key={index}
-            style={{
-              padding: "3.5rem 2rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.25rem",
-              borderRight: index < 4 ? "1px solid var(--border)" : "none",
-            }}
-          >
+          <div key={index} className="highlights-strip-card">
             <div style={{ width: "2rem", height: "2rem", display: "flex", alignItems: "center", color: "#4800F4" }}>
               {hl.icon}
             </div>

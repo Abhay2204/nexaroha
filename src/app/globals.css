@@ -2931,7 +2931,577 @@ html.lenis body {
 }
 
 
+/* ====================================================
+   MOBILE NAVIGATION DRAWER & LAYOUT UTILITIES
+   ==================================================== */
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10000;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--foreground);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(245, 245, 243, 0.96);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  width: 100%;
+  max-width: 320px;
+  padding: 2rem;
+}
+
+.mobile-nav-link {
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.mobile-nav-link:hover {
+  color: #4800F4;
+}
+
+.btn-contact-mobile {
+  background-color: var(--foreground);
+  color: var(--background);
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: var(--transition-smooth);
+}
+
+.btn-contact-mobile:hover {
+  background: linear-gradient(135deg, #4800F4, #E100F5);
+  color: #ffffff;
+  transform: scale(1.03);
+}
+
+/* Custom Grid Column Span Classes */
+.why-grid,
+.ui-gallery-content,
+.featured-work-right-col {
+  grid-column: span 8;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.testimonial-left-col,
+.testimonial-right-col {
+  grid-column: span 6;
+}
+
+.philosophy-right-col {
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.footer-col-brand {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-col-links {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cta-middle-col,
+.cta-right-col {
+  grid-column: span 4;
+}
+
+.fw-vertical-label {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid var(--border);
+  padding-right: 1.5rem;
+}
+
+.fw-projects-subgrid {
+  grid-column: span 11;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+.ui-gallery-filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ui-gallery-tabs {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.featured-work-filters-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Custom Hero Layout Classes (Default Desktop) */
+.custom-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 120px;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-left: clamp(1.5rem, 4vw, 5rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
+  position: relative;
+  align-items: center;
+  gap: 0;
+}
+
+.custom-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-right: 2rem;
+  max-width: 540px;
+}
+
+.custom-hero-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.custom-hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  max-width: 620px;
+  cursor: none;
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, black 38%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, black 38%, transparent 100%);
+}
+
+.custom-hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.custom-hero-timeline-line {
+  position: absolute;
+  left: calc(1rem + 3px);
+  top: calc(50% - 100px);
+  height: 200px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  pointerEvents: none;
+}
+
+.custom-hero-scroll-badge {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  z-index: 50;
+}
 
 
+/* ====================================================
+   BREAKPOINT: TABLET LAYOUT (MAX-WIDTH: 1024PX)
+   ==================================================== */
+@media (max-width: 1024px) {
+  /* Maintain 12-column template layout but allow spacing adjustments */
+  .grid-12 {
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Core blocks stack vertically (12 columns span) on tablet */
+  .sticky-sidebar,
+  .services-list,
+  .why-grid,
+  .ui-gallery-content,
+  .featured-work-right-col,
+  .testimonial-left-col,
+  .testimonial-right-col,
+  .process-timeline,
+  .philosophy-right-col {
+    grid-column: span 12 !important;
+  }
+
+  /* Header mobile toggle show */
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .btn-contact {
+    display: none !important;
+  }
+  .header {
+    padding: 1.25rem 2rem !important;
+  }
+  .header.scrolled {
+    width: calc(100% - 2rem) !important;
+    top: 1rem !important;
+    padding: 0.5rem 1.5rem !important;
+  }
+
+  /* Custom Hero Grid adjustments for tablet */
+  .custom-hero-grid {
+    grid-template-columns: 1fr 1fr !important;
+    min-height: auto !important;
+    padding-top: 7rem !important;
+    padding-bottom: 4rem !important;
+    gap: 3rem !important;
+  }
+
+  .custom-hero-left {
+    grid-column: span 1 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .custom-hero-center {
+    grid-column: span 1 !important;
+    height: auto !important;
+  }
+
+  .custom-hero-image-container {
+    height: 440px !important;
+    max-width: 440px !important;
+  }
+
+  .custom-hero-right {
+    grid-column: span 2 !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+    height: auto !important;
+    margin-top: 2rem !important;
+  }
+
+  .custom-hero-right > div {
+    flex-direction: row !important;
+    gap: 2.5rem !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .custom-hero-timeline-line {
+    display: none !important;
+  }
+
+  /* Headline scale for tablet */
+  .fw-headline {
+    font-size: 2.75rem !important;
+  }
+
+  /* Philosophy layout */
+  .philosophy-right-col {
+    gap: 3.5rem !important;
+  }
+
+  /* Testimonial columns stacking adjustment */
+  .testimonial-right-col {
+    margin-top: 2.5rem !important;
+  }
+
+  /* Footer layout elements on tablet (Brand full width, links side-by-side) */
+  .footer-col-brand {
+    grid-column: span 12 !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-col-links {
+    grid-column: span 3 !important;
+  }
+
+  /* UI Gallery navigation row */
+  .ui-gallery-filter-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+  }
+  .ui-gallery-tabs {
+    flex-wrap: wrap !important;
+  }
+
+  /* Featured projects horizontal list */
+  .fw-vertical-label {
+    display: none !important;
+  }
+  .fw-projects-subgrid {
+    grid-column: 1 / -1 !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* CTA layout on tablet: Side-by-side form & mockup card (6 + 6 = 12) */
+  .cta-middle-col {
+    grid-column: span 6 !important;
+  }
+  .cta-right-col {
+    grid-column: span 6 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Highlights Strip tablet adjustments */
+  .highlights-strip-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    margin-left: -2rem !important;
+    margin-right: -2rem !important;
+    width: calc(100% + 4rem) !important;
+  }
+  .highlights-strip-card {
+    padding: 3rem 2rem !important;
+  }
+  .highlights-strip-card:nth-child(3) {
+    border-right: none !important;
+  }
+}
 
 
+/* ====================================================
+   BREAKPOINT: MOBILE LAYOUT (MAX-WIDTH: 768PX)
+   ==================================================== */
+@media (max-width: 768px) {
+  /* Keep 12-column grid but force elements to wrap */
+  .grid-12 {
+    grid-template-columns: repeat(12, 1fr) !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Direct children stack by default */
+  .sticky-sidebar,
+  .services-list,
+  .why-grid,
+  .ui-gallery-content,
+  .featured-work-right-col,
+  .testimonial-left-col,
+  .testimonial-right-col,
+  .process-timeline,
+  .philosophy-right-col,
+  .cta-middle-col,
+  .cta-right-col,
+  .footer-col-brand {
+    grid-column: span 12 !important;
+  }
+
+  .header {
+    padding: 1rem 1.5rem !important;
+  }
+  
+  .header.scrolled {
+    width: calc(100% - 1.5rem) !important;
+    top: 0.75rem !important;
+    padding: 0.4rem 1.25rem !important;
+  }
+
+  /* Typography scale-downs for readability on mobile */
+  .fw-headline {
+    font-size: 2.25rem !important;
+  }
+
+  blockquote {
+    font-size: 1.45rem !important;
+  }
+
+  .stat-number {
+    font-size: 1.75rem !important;
+  }
+
+  /* Custom Hero Grid adjustments for mobile */
+  .custom-hero-grid {
+    grid-template-columns: 1fr !important;
+    padding-top: 6.5rem !important;
+    padding-bottom: 3.5rem !important;
+    gap: 3rem !important;
+  }
+
+  .custom-hero-left {
+    grid-column: 1 / -1 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .custom-hero-center {
+    grid-column: 1 / -1 !important;
+  }
+
+  .custom-hero-image-container {
+    height: 310px !important;
+    max-width: 310px !important;
+  }
+
+  .custom-hero-right {
+    grid-column: 1 / -1 !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .custom-hero-right > div {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 1.25rem !important;
+    justify-content: flex-start !important;
+  }
+
+  .custom-hero-scroll-badge {
+    display: none !important;
+  }
+
+  /* Featured Work layout filters styling on mobile */
+  .featured-work-filters-row {
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+  }
+
+  .fw-projects-subgrid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Footer layout: 2 links groups side-by-side on mobile */
+  .footer-col-links {
+    grid-column: span 6 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Highlights Strip mobile adjustments - Only show 2 items on mobile */
+  .highlights-strip-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem !important;
+    width: calc(100% + 3rem) !important;
+  }
+  .highlights-strip-card {
+    padding: 2.5rem 1.25rem !important;
+    border-right: 1px solid var(--border) !important;
+  }
+  .highlights-strip-card:nth-child(2) {
+    border-right: none !important;
+  }
+  .highlights-strip-row > .highlights-strip-card:nth-child(n+3) {
+    display: none !important;
+  }
+
+  /* Process Highlights Row mobile adjustments - Only show 2 items on mobile */
+  .process-bottom-highlights {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .process-bottom-highlights > .process-hl-card:nth-child(n+3) {
+    display: none !important;
+  }
+}
+
+/* Base Styles for Highlights Strip (CTA & FeaturedWork) */
+.highlights-strip-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 6rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-left: -3.5rem;
+  margin-right: -3.5rem;
+  width: calc(100% + 7rem);
+}
+
+.highlights-strip-card {
+  padding: 4rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-right: 1px solid var(--border);
+}
+
+.highlights-strip-card:last-child {
+  border-right: none;
+}

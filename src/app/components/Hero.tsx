@@ -84,22 +84,10 @@ export default function Hero() {
 
   return (
     /* 3-column grid: [left text] [center image] [right timeline] */
-    <section
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 120px",
-        minHeight: "100vh",
-        paddingTop: "5rem",
-        paddingLeft: "clamp(1.5rem, 4vw, 5rem)",
-        paddingRight: "clamp(1rem, 2vw, 2rem)",
-        position: "relative",
-        alignItems: "center",
-        gap: "0",
-      }}
-    >
+    <section className="custom-hero-grid">
 
       {/* ── Col 1: Left text ── */}
-      <div className="animate-fade-up" style={{ display: "flex", flexDirection: "column", gap: "1.5rem", paddingRight: "2rem", maxWidth: "540px" }}>
+      <div className="animate-fade-up custom-hero-left">
 
         <div className="badge">
           <span className="badge-dot" style={{ backgroundColor: "#4800F4" }} />
@@ -166,20 +154,12 @@ export default function Hero() {
 
       {/* ── Col 2: Centre image ── */}
       <div
-        style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", height: "100%" }}
+        className="custom-hero-center"
         onMouseEnter={() => setIsHovering(true)}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <div style={{
-          position: "relative",
-          width: "100%",
-          height: "620px",
-          maxWidth: "620px",
-          cursor: "none",
-          WebkitMaskImage: "radial-gradient(ellipse 88% 88% at 50% 48%, black 38%, transparent 100%)",
-          maskImage: "radial-gradient(ellipse 88% 88% at 50% 48%, black 38%, transparent 100%)",
-        }}>
+        <div className="custom-hero-image-container">
           <Image
             src="/images/hero_floating_cards_new.png"
             alt="3D floating UI cards showcasing digital design work"
@@ -191,25 +171,9 @@ export default function Hero() {
       </div>
 
       {/* ── Col 3: Vertical timeline ── */}
-      <div style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "center",
-        height: "100%",
-        paddingLeft: "1rem",
-        position: "relative",
-      }}>
+      <div className="custom-hero-right">
         {/* Vertical connecting line */}
-        <div style={{
-          position: "absolute",
-          left: "calc(1rem + 3px)",
-          top: "calc(50% - 100px)",
-          height: "200px",
-          width: "1px",
-          background: "linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent)",
-          pointerEvents: "none",
-        }} />
+        <div className="custom-hero-timeline-line" />
 
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", position: "relative" }}>
           {steps.map((step) => {
@@ -262,12 +226,7 @@ export default function Hero() {
       </div>
 
       {/* ── Scroll badge ── */}
-      <div style={{
-        position: "fixed", right: "2.5rem", bottom: "2.5rem",
-        width: "88px", height: "88px",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        userSelect: "none", zIndex: 50,
-      }}>
+      <div className="custom-hero-scroll-badge">
         {/* Rotating text ring only */}
         <div style={{
           position: "absolute",

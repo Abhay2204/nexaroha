@@ -328,7 +328,7 @@ export default function Process() {
         </div>
 
         {/* Right Column - Scrollable Timeline Steps */}
-        <div ref={containerRef} className="process-timeline" style={{ gridColumn: "span 8" }}>
+        <div ref={containerRef} className="process-timeline">
           {/* Progress track line indicator */}
           <div className="process-timeline-line" />
           <div

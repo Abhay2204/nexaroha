@@ -279,10 +279,10 @@ export default function FeaturedWork() {
         </div>
 
         {/* Right Column (Category filters & active image mockups) */}
-        <div style={{ gridColumn: "span 8", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+        <div className="featured-work-right-col">
           
           {/* Category Filter Tabs positioned at the top right */}
-          <div style={{ display: "flex", justifyContent: "flex-end", gap: "2rem", width: "100%" }}>
+          <div className="featured-work-filters-row">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -345,16 +345,7 @@ export default function FeaturedWork() {
         }}
       >
         {/* Left Vertical Label */}
-        <div
-          style={{
-            gridColumn: "span 1",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            borderRight: "1px solid var(--border)",
-            paddingRight: "1.5rem",
-          }}
-        >
+        <div className="fw-vertical-label">
           <div
             style={{
               writingMode: "vertical-rl",
@@ -373,7 +364,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* 5 Project Columns */}
-        <div style={{ gridColumn: "span 11", display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1.5rem" }}>
+        <div className="fw-projects-subgrid">
           {projects.slice(1, 6).map((item, index) => {
             const actualIndex = index + 1; // Index in the projects array
             const isProjectActive = activeIndex === actualIndex;
@@ -459,32 +450,16 @@ export default function FeaturedWork() {
 
       {/* Dark Highlights Bottom Footer Row */}
       <div
+        className="highlights-strip-row dark"
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          marginTop: "6rem",
-          borderTop: "1px solid var(--border)",
-          borderBottom: "1px solid var(--border)",
           backgroundColor: "#000000",
           color: "#ffffff",
-          marginLeft: "-3.5rem",
-          marginRight: "-3.5rem",
-          width: "calc(100% + 7rem)",
           "--border": "rgba(255,255,255,0.08)",
           "--text-muted": "#888888",
         } as React.CSSProperties}
       >
         {highlights.map((hl, index) => (
-          <div
-            key={index}
-            style={{
-              padding: "4rem 2.5rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.5rem",
-              borderRight: index < 4 ? "1px solid var(--border)" : "none",
-            }}
-          >
+          <div key={index} className="highlights-strip-card">
             <div style={{ width: "2rem", height: "2rem", display: "flex", alignItems: "center", color: "#ffffff" }}>
               {hl.icon}
             </div>

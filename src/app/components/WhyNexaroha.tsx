@@ -344,7 +344,7 @@ export default function WhyNexaroha() {
         </div>
 
         {/* Right column (3x2 Pane grid layout) */}
-        <div className="why-grid" style={{ gridColumn: "span 8" }}>
+        <div className="why-grid">
           <div className="why-pane-grid">
             {features.map((feature, index) => (
               <div key={index} className="why-pane-card">

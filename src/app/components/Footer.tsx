@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="grid-12" style={{ borderBottom: "1px solid var(--border)", paddingBottom: "5rem" }}>
 
           {/* Brand */}
-          <div style={{ gridColumn: "span 4", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div className="footer-col-brand">
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
               <div style={{ width: "2.25rem", height: "2.25rem", position: "relative", borderRadius: "8px", overflow: "hidden" }}>
                 <Image src="/images/logo.png" alt="Nexaroha Logo" fill style={{ objectFit: "cover" }} />
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div className="footer-col-links">
             <span style={{ fontSize: "0.8rem", fontWeight: 650, letterSpacing: "0.15em", color: "var(--text-muted)", textTransform: "uppercase" }}>Services</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {["UI/UX Design", "Website Development", "E-Commerce Stores", "Custom CRMs", "SEO & Growth", "Mobile Apps"].map(s => (
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div className="footer-col-links">
             <span style={{ fontSize: "0.8rem", fontWeight: 650, letterSpacing: "0.15em", color: "var(--text-muted)", textTransform: "uppercase" }}>Company</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[
@@ -79,7 +79,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div className="footer-col-links">
             <span style={{ fontSize: "0.8rem", fontWeight: 650, letterSpacing: "0.15em", color: "var(--text-muted)", textTransform: "uppercase" }}>Contact</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               <a href="mailto:hello@nexaroha.com" className="footer-link"
@@ -93,7 +93,7 @@ export default function Footer() {
           </div>
 
           {/* Socials */}
-          <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          <div className="footer-col-links">
             <span style={{ fontSize: "0.8rem", fontWeight: 650, letterSpacing: "0.15em", color: "var(--text-muted)", textTransform: "uppercase" }}>Follow Us</span>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {[

@@ -194,13 +194,13 @@ export default function UiGallery() {
         </div>
 
         {/* Right Column - Filters Header & Bento grid of cards (spans 8 columns) */}
-        <div style={{ gridColumn: "span 8", display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+        <div className="ui-gallery-content">
           
           {/* Top header navigation filter row */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+          <div className="ui-gallery-filter-row">
             
             {/* Category tabs */}
-            <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <div className="ui-gallery-tabs">
               {categories.map((cat) => {
                 const isActive = filterCategory === cat;
                 return (

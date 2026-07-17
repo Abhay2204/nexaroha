@@ -96,7 +96,7 @@ export default function Philosophy() {
         </div>
 
         {/* Right Column: 3 Overlapping Vertical Editorial Cards (spans 7 columns) */}
-        <div style={{ gridColumn: "span 7", display: "flex", flexDirection: "column", gap: "4.5rem" }}>
+        <div className="philosophy-right-col">
           {pillars.map((pillar, index) => (
             <div
               key={index}
