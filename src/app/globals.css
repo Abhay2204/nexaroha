@@ -3797,7 +3797,205 @@ html.lenis body {
 
 
 /* ====================================================
+   CINEMATIC TEXT LOADER STAGE
+   ==================================================== */
+
+/* Full-viewport overlay that centres sentences */
+.cine-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Each sentence line container */
+.cine-line {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  max-width: 1000px;
+  width: 90%;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+/* Kicker tag above headline */
+.cine-kicker {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6366f1;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cine-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6366f1;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+}
+
+/* The main headline sentence */
+.cine-headline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.15em 0.3em;
+  color: #09090b;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  margin: 0;
+  padding: 0;
+}
+
+.cine-size-xl {
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  font-weight: 800;
+}
+
+.cine-size-lg {
+  font-size: clamp(1.85rem, 4.5vw, 4rem);
+  font-weight: 700;
+}
+
+.cine-size-md {
+  font-size: clamp(1.4rem, 3.2vw, 2.6rem);
+  font-weight: 600;
+}
+
+/* Gradient highlight for brand terms */
+.cine-gradient-text {
+  background: linear-gradient(135deg, #4800F4 0%, #9033FF 50%, #E100F5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Individual word token */
+.cine-word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/* Bottom status & progress indicator */
+.cine-footer-status {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 25;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.cine-counter {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: #888888;
+  font-weight: 600;
+}
+
+.cine-progress-track {
+  width: 140px;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cine-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4800F4, #E100F5);
+  border-radius: 999px;
+}
+
+/* Mobile Responsive Optimizations */
+@media (max-width: 768px) {
+  .loader-meta.top-left {
+    top: 1.25rem;
+    left: 1.25rem;
+    font-size: 0.58rem;
+  }
+
+  .loader-meta.top-right {
+    top: 1.25rem;
+    right: 1.25rem;
+    font-size: 0.58rem;
+  }
+
+  .loader-meta.bottom-left,
+  .loader-meta.bottom-right {
+    display: none; /* Hide bottom corner metadata on mobile to avoid clutter */
+  }
+
+  .cine-stage {
+    padding: 0 1rem;
+  }
+
+  .cine-line {
+    padding: 0 1rem;
+    width: 96%;
+    max-width: 100%;
+  }
+
+  .cine-kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+
+  .cine-size-xl {
+    font-size: clamp(1.85rem, 8.5vw, 2.75rem);
+    line-height: 1.15;
+  }
+
+  .cine-size-lg {
+    font-size: clamp(1.45rem, 6.8vw, 2.15rem);
+    line-height: 1.18;
+  }
+
+  .cine-size-md {
+    font-size: clamp(1.15rem, 5.2vw, 1.65rem);
+    line-height: 1.25;
+  }
+
+  .cine-footer-status {
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cine-counter {
+    font-size: 0.65rem;
+  }
+
+  .cine-progress-track {
+    width: 110px;
+  }
+}
+
+
+/* ====================================================
    SCROLL REVEAL UTILITIES (Global & Lightweight)
+
    ==================================================== */
 .reveal-fade-in {
   opacity: 0 !important;

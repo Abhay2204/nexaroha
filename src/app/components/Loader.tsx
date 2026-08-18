@@ -1,196 +1,311 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+
+interface Sentence {
+  kicker: string;
+  words: { text: string; highlight?: boolean }[];
+  size: "xl" | "lg" | "md";
+}
+
+const SENTENCES: Sentence[] = [
+  {
+    kicker: "01 // INTRODUCTION",
+    size: "xl",
+    words: [
+      { text: "Hi," },
+      { text: "we" },
+      { text: "are" },
+      { text: "Nexaroha.", highlight: true },
+    ],
+  },
+  {
+    kicker: "02 // IDENTITY",
+    size: "xl",
+    words: [
+      { text: "Your" },
+      { text: "next-gen" },
+      { text: "growth", highlight: true },
+      { text: "partners." },
+    ],
+  },
+  {
+    kicker: "03 // PHILOSOPHY",
+    size: "lg",
+    words: [
+      { text: "We" },
+      { text: "turn" },
+      { text: "bold" },
+      { text: "ideas" },
+      { text: "into" },
+      { text: "market", highlight: true },
+      { text: "leaders." },
+    ],
+  },
+  {
+    kicker: "04 // ARSENAL",
+    size: "md",
+    words: [
+      { text: "Lead" },
+      { text: "Generation." },
+      { text: "Top" },
+      { text: "SEO." },
+      { text: "Conversion", highlight: true },
+      { text: "Design." },
+    ],
+  },
+  {
+    kicker: "05 // STANDARD",
+    size: "lg",
+    words: [
+      { text: "Built" },
+      { text: "for" },
+      { text: "brands" },
+      { text: "that" },
+      { text: "refuse", highlight: true },
+      { text: "to" },
+      { text: "settle." },
+    ],
+  },
+  {
+    kicker: "06 // READY",
+    size: "xl",
+    words: [
+      { text: "Welcome" },
+      { text: "to" },
+      { text: "Nexaroha.", highlight: true },
+    ],
+  },
+];
 
 export default function Loader() {
   const [isLoaderActive, setIsLoaderActive] = useState(true);
   const [localTime, setLocalTime] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const brandRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  const bulletsRef = useRef<HTMLUListElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
+  const masterTimelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Allow user to tap/click to fast-forward loader if desired
+  const handleFastForward = () => {
+    if (masterTimelineRef.current && masterTimelineRef.current.progress() < 0.95) {
+      masterTimelineRef.current.timeScale(4);
+    }
+  };
 
   useEffect(() => {
-    // Check if mobile (disable loader on screen width <= 768px)
-    if (window.innerWidth <= 768) {
-      setIsLoaderActive(false);
-      return;
-    }
+    const isMobile = window.innerWidth <= 768;
 
-    // Set dynamic local time ticking
-    const updateTime = () => {
+    // Dynamic clock
+    const updateClock = () => {
       const now = new Date();
-      const timeStr = now.toLocaleTimeString("en-US", {
-        hour12: false,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        timeZoneName: "short",
-      });
-      setLocalTime(timeStr);
+      setLocalTime(
+        now.toLocaleTimeString("en-US", {
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZoneName: "short",
+        })
+      );
     };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
+    updateClock();
+    const timerId = setInterval(updateClock, 1000);
 
-    // Disable scrolling during load
+    // Prevent page scroll while loader runs
     document.body.style.overflow = "hidden";
 
-    // Loader Timeline
-    const tl = gsap.timeline({
-      defaults: { ease: "power4.out", duration: 0.8 },
-      onComplete: () => {
-        setIsLoaderActive(false);
-        document.body.style.overflow = "";
-      },
-    });
+    // GSAP context ensures clean scoping & cleanup in React
+    const ctx = gsap.context(() => {
+      const master = gsap.timeline({
+        onComplete: () => {
+          setIsLoaderActive(false);
+          document.body.style.overflow = "";
+        },
+      });
 
-    // 1. Grid Lines staggered scale-in to build structural feel
-    tl.to(".loader-grid-line-v", { scaleY: 1, stagger: 0.05, duration: 0.8 }, 0);
-    tl.to(".loader-grid-line-h", { scaleX: 1, stagger: 0.05, duration: 0.8 }, 0.1);
-    tl.to(".loader-coord-label", { opacity: 0.25, scale: 1, stagger: 0.03, duration: 0.6 }, 0.2);
+      masterTimelineRef.current = master;
 
-    // 1.5. Infinite looping scanners for technical layout grid
-    tl.to(".loader-grid-glow-v, .loader-grid-glow-h", { opacity: 0.35, duration: 0.6 }, 0.3);
-    
-    gsap.fromTo(".loader-grid-glow-v-1", 
-      { y: "-200px" }, 
-      { y: "100vh", duration: 3.2, repeat: -1, ease: "none", delay: 0.1 }
-    );
-    gsap.fromTo(".loader-grid-glow-v-2", 
-      { y: "-200px" }, 
-      { y: "100vh", duration: 2.8, repeat: -1, ease: "none", delay: 0.8 }
-    );
-    gsap.fromTo(".loader-grid-glow-v-3", 
-      { y: "-200px" }, 
-      { y: "100vh", duration: 3.6, repeat: -1, ease: "none", delay: 0.4 }
-    );
+      // 1. Grid structure entrance
+      master.to(".loader-grid-line-v", { scaleY: 1, stagger: 0.04, duration: 0.7, ease: "power3.out" }, 0);
+      master.to(".loader-grid-line-h", { scaleX: 1, stagger: 0.04, duration: 0.7, ease: "power3.out" }, 0.1);
+      master.to(".loader-grid-glow-v, .loader-grid-glow-h", { opacity: 0.35, duration: 0.5 }, 0.25);
 
-    gsap.fromTo(".loader-grid-glow-h-1", 
-      { x: "-200px" }, 
-      { x: "100vw", duration: 4.0, repeat: -1, ease: "none", delay: 0.3 }
-    );
-    gsap.fromTo(".loader-grid-glow-h-2", 
-      { x: "-200px" }, 
-      { x: "100vw", duration: 4.8, repeat: -1, ease: "none", delay: 1.1 }
-    );
+      // Scanners traveling
+      gsap.fromTo(".loader-grid-glow-v-1", { y: "-200px" }, { y: "100vh", duration: 3.2, repeat: -1, ease: "none", delay: 0.1 });
+      gsap.fromTo(".loader-grid-glow-v-2", { y: "-200px" }, { y: "100vh", duration: 2.8, repeat: -1, ease: "none", delay: 0.8 });
+      gsap.fromTo(".loader-grid-glow-v-3", { y: "-200px" }, { y: "100vh", duration: 3.6, repeat: -1, ease: "none", delay: 0.4 });
+      gsap.fromTo(".loader-grid-glow-h-1", { x: "-200px" }, { x: "100vw", duration: 4.0, repeat: -1, ease: "none", delay: 0.3 });
+      gsap.fromTo(".loader-grid-glow-h-2", { x: "-200px" }, { x: "100vw", duration: 4.8, repeat: -1, ease: "none", delay: 1.1 });
 
-    // 2. Metadata details fade in at corners
-    tl.to(".loader-meta", { opacity: 0.6, y: 0, stagger: 0.05, duration: 0.6 }, 0.2);
+      // Corner metadata
+      master.to(".loader-meta", { opacity: 0.65, y: 0, stagger: 0.05, duration: 0.5, ease: "power2.out" }, 0.2);
 
-    // 3. Entrance of Brand Logo and Name
-    tl.to(logoRef.current, { opacity: 1, scale: 1, rotate: 0, y: 0 }, 0.3);
-    tl.to(brandRef.current, { opacity: 1, y: 0 }, "-=0.5");
+      // Footer progress & counter fade in
+      master.to(".cine-footer-status", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.3);
 
-    // 4. Entrance of positioning headlines and copy
-    tl.to(titleRef.current, { opacity: 1, y: 0 }, "-=0.4");
-    tl.to(descRef.current, { opacity: 1, y: 0 }, "-=0.4");
+      // Snappy responsive timings (slightly faster on mobile for great UX)
+      const lineInDuration = isMobile ? 0.42 : 0.55;
+      const lineHoldDuration = isMobile ? 0.65 : 0.85;
+      const lineOutDuration = isMobile ? 0.32 : 0.4;
+      const interGap = isMobile ? 0.06 : 0.08;
 
-    // 5. Entrance of bullet points list
-    tl.to(bulletsRef.current, { opacity: 1, y: 0 }, "-=0.4");
+      let timeCursor = 0.35;
+      const totalSentences = SENTENCES.length;
 
-    // 6. Entrance of rotating loader spinner
-    tl.to(progressRef.current, { opacity: 1, y: 0 }, "-=0.4");
+      // Continuous progress bar fill across all sentences
+      const totalAnimationTime = totalSentences * (lineInDuration + lineHoldDuration + lineOutDuration + interGap);
+      master.to(".cine-progress-bar", {
+        width: "100%",
+        duration: totalAnimationTime,
+        ease: "none",
+      }, timeCursor);
 
-    // 7. Let it rotate/spin for a moment to showcase loading state
-    tl.to({}, { duration: 1.5 });
+      // Loop through each sentence
+      SENTENCES.forEach((_, idx) => {
+        const lineSelector = `.cine-line-${idx}`;
+        const kickerSelector = `.cine-line-${idx} .cine-kicker`;
+        const wordsSelector = `.cine-line-${idx} .cine-word`;
 
-    // 8. Staged Pause to showcase loading completion
-    tl.to({}, { duration: 0.6 });
+        // Update counter state
+        master.add(() => {
+          setCurrentIndex(idx + 1);
+        }, timeCursor);
 
-    // 9. Fade out all text, loader, coordinates, glow elements and grid metadata
-    tl.to(
-      [
-        contentRef.current,
-        ".loader-meta",
-        ".loader-grid-line-v",
-        ".loader-grid-line-h",
-        ".loader-coord-label",
-        ".loader-grid-glow-v",
-        ".loader-grid-glow-h",
-      ],
-      {
-        opacity: 0,
-        y: -20,
-        duration: 0.6,
-        stagger: 0.05,
-        ease: "power4.in",
-      }
-    );
+        // Make line container visible and animate in
+        master.set(lineSelector, { visibility: "visible", opacity: 1 }, timeCursor);
 
-    // 10. Staggered Slide up of the 6 curtain columns (revealing homepage)
-    tl.to(
-      ".curtain-panel",
-      {
-        yPercent: -100,
-        stagger: 0.08,
-        duration: 1.2,
-        ease: "power4.inOut",
-      },
-      "-=0.2"
-    );
+        // Kicker fade in
+        master.fromTo(
+          kickerSelector,
+          { opacity: 0, y: 15, filter: "blur(4px)" },
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4, ease: "power3.out" },
+          timeCursor
+        );
+
+        // Words staggered lift with blur removal
+        master.fromTo(
+          wordsSelector,
+          { opacity: 0, y: isMobile ? 22 : 32, filter: "blur(8px)", scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            scale: 1,
+            stagger: isMobile ? 0.04 : 0.05,
+            duration: lineInDuration,
+            ease: "power3.out",
+          },
+          timeCursor + 0.04
+        );
+
+        // Hold sentence on screen
+        timeCursor += lineInDuration + lineHoldDuration;
+
+        // Smoothly dissolve sentence out (lift + subtle expansion + blur)
+        master.to(
+          lineSelector,
+          {
+            opacity: 0,
+            y: isMobile ? -16 : -24,
+            filter: "blur(8px)",
+            scale: 1.02,
+            duration: lineOutDuration,
+            ease: "power2.in",
+          },
+          timeCursor
+        );
+
+        // Hide after dissolved
+        master.set(lineSelector, { visibility: "hidden" }, timeCursor + lineOutDuration);
+
+        // Advance cursor to next sentence
+        timeCursor += lineOutDuration + interGap;
+      });
+
+      // Brief cinematic breath after final sentence
+      timeCursor += 0.2;
+
+      // Fade out background UI elements (grid, meta, footer)
+      master.to(
+        [
+          ".loader-meta",
+          ".cine-footer-status",
+          ".loader-grid-line-v",
+          ".loader-grid-line-h",
+          ".loader-grid-glow-v",
+          ".loader-grid-glow-h",
+        ],
+        {
+          opacity: 0,
+          y: -20,
+          duration: 0.45,
+          stagger: 0.03,
+          ease: "power3.in",
+        },
+        timeCursor
+      );
+
+      // Slide up curtain panels in elegant stagger
+      master.to(
+        ".curtain-panel",
+        {
+          yPercent: -100,
+          stagger: isMobile ? 0.05 : 0.07,
+          duration: isMobile ? 0.9 : 1.1,
+          ease: "power4.inOut",
+        },
+        timeCursor + 0.12
+      );
+    }, containerRef);
 
     return () => {
-      // Re-enable scrolling in case component unmounts early
       document.body.style.overflow = "";
-      clearInterval(interval);
-      tl.kill();
+      clearInterval(timerId);
+      ctx.revert();
     };
   }, []);
 
   if (!isLoaderActive) return null;
 
   return (
-    <div ref={containerRef} className="loader-wrapper active">
-      {/* 6-Layered Curtain Panels */}
+    <div
+      ref={containerRef}
+      className="loader-wrapper active"
+      onClick={handleFastForward}
+      title="Tap anywhere to skip"
+    >
+      {/* 6-Layered Curtain Panels (Reveals website underneath) */}
       <div className="curtain-container" aria-hidden="true">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="curtain-panel" />
         ))}
       </div>
 
-      {/* Structural Blueprint Grid Lines */}
+      {/* Structural Architectural Grid Lines */}
       <div className="curtain-container" aria-hidden="true" style={{ zIndex: 2 }}>
-        {/* Vertical lines */}
-        {[16.666, 33.333, 50, 66.666, 83.333].map((leftVal, idx) => (
-          <div key={`v-${idx}`} className="loader-grid-line-v" style={{ left: `${leftVal}vw` }} />
+        {[16.666, 33.333, 50, 66.666, 83.333].map((left, idx) => (
+          <div key={`v-${idx}`} className="loader-grid-line-v" style={{ left: `${left}vw` }} />
         ))}
-        {/* Horizontal lines */}
-        {[25, 50, 75].map((topVal, idx) => (
-          <div key={`h-${idx}`} className="loader-grid-line-h" style={{ top: `${topVal}vh` }} />
+        {[25, 50, 75].map((top, idx) => (
+          <div key={`h-${idx}`} className="loader-grid-line-h" style={{ top: `${top}vh` }} />
         ))}
       </div>
 
-      {/* Purple Glowing Scanners traveling along grid lines */}
+      {/* Purple Glowing Grid Scanners */}
       <div className="curtain-container" aria-hidden="true" style={{ zIndex: 3 }}>
         <div className="loader-grid-glow-v loader-grid-glow-v-1" style={{ left: "16.666vw" }} />
         <div className="loader-grid-glow-v loader-grid-glow-v-2" style={{ left: "50vw" }} />
         <div className="loader-grid-glow-v loader-grid-glow-v-3" style={{ left: "83.333vw" }} />
-        
         <div className="loader-grid-glow-h loader-grid-glow-h-1" style={{ top: "25vh" }} />
         <div className="loader-grid-glow-h loader-grid-glow-h-2" style={{ top: "75vh" }} />
       </div>
 
-      {/* Subtle Coordinate Marks at Intersections */}
-      <div className="loader-coord-label" style={{ left: "16.666vw", top: "25vh", transform: "translate(-50%, -100%)" }}>[X.01_Y.25]</div>
-      <div className="loader-coord-label" style={{ left: "50vw", top: "25vh", transform: "translate(-50%, -100%)" }}>[X.03_Y.25]</div>
-      <div className="loader-coord-label" style={{ left: "83.333vw", top: "25vh", transform: "translate(-50%, -100%)" }}>[X.05_Y.25]</div>
-      <div className="loader-coord-label" style={{ left: "33.333vw", top: "50vh", transform: "translate(-50%, -100%)" }}>[X.02_Y.50]</div>
-      <div className="loader-coord-label" style={{ left: "66.666vw", top: "50vh", transform: "translate(-50%, -100%)" }}>[X.04_Y.50]</div>
-      <div className="loader-coord-label" style={{ left: "16.666vw", top: "75vh", transform: "translate(-50%, -100%)" }}>[X.01_Y.75]</div>
-      <div className="loader-coord-label" style={{ left: "50vw", top: "75vh", transform: "translate(-50%, -100%)" }}>[X.03_Y.75]</div>
-      <div className="loader-coord-label" style={{ left: "83.333vw", top: "75vh", transform: "translate(-50%, -100%)" }}>[X.05_Y.75]</div>
-
-      {/* Corner Editorial Metadata */}
+      {/* Editorial Corner Metadata */}
       <div className="loader-meta top-left">
         <span>LOC // MUMBAI, IN</span>
-        <span>SYS // {localTime || "21:58:00 IST"}</span>
+        <span>SYS // {localTime || "—"}</span>
       </div>
       <div className="loader-meta top-right">
         <span>PROJECT // NEXAROHA</span>
@@ -198,71 +313,47 @@ export default function Loader() {
       </div>
       <div className="loader-meta bottom-left">
         <span>STACK // NEXTJS_REACT</span>
-        <span>ANIM // GSAP_LENIS</span>
+        <span>ANIM // GSAP_MOTION</span>
       </div>
       <div className="loader-meta bottom-right">
-        <span>EST_TIME // 3.5s</span>
-        <span>SEO // 100%_PASS</span>
+        <span>MODE // AGENCY_GROWTH</span>
+        <span>STATUS // 100%_OPTIMIZED</span>
       </div>
 
-      {/* Loader Centered Content Card */}
-      <div ref={contentRef} className="loader-content">
-        
-        {/* Logo and Brand Text */}
-        <div className="loader-logo-wrap">
-          <div ref={logoRef} className="loader-logo-img" style={{ opacity: 0, transform: "scale(0.8) rotate(-10deg)" }}>
-            <Image
-              src="/images/logo.png"
-              alt="Nexaroha Logo Symbol"
-              width={96}
-              height={96}
-              priority
-            />
+      {/* ── Center Cinematic Sentences Stage ── */}
+      <div className="cine-stage" aria-live="polite">
+        {SENTENCES.map((item, idx) => (
+          <div
+            key={idx}
+            className={`cine-line cine-line-${idx}`}
+          >
+            <div className="cine-kicker">
+              <span className="cine-kicker-dot" />
+              <span>{item.kicker}</span>
+            </div>
+
+            <h2 className={`cine-headline cine-size-${item.size}`}>
+              {item.words.map((w, wIdx) => (
+                <span
+                  key={wIdx}
+                  className={`cine-word ${w.highlight ? "cine-gradient-text" : ""}`}
+                >
+                  {w.text}
+                </span>
+              ))}
+            </h2>
           </div>
-          <div ref={brandRef} className="loader-brand-img" style={{ opacity: 0, transform: "translateY(15px)" }}>
-            <Image
-              src="/nexaroha.png"
-              alt="Nexaroha Logo Text"
-              width={220}
-              height={55}
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          </div>
+        ))}
+      </div>
+
+      {/* ── Bottom Progress & Slide Counter ── */}
+      <div className="cine-footer-status" style={{ opacity: 0, transform: "translateY(10px)" }}>
+        <span className="cine-counter">
+          0{currentIndex} / 0{SENTENCES.length}
+        </span>
+        <div className="cine-progress-track">
+          <div className="cine-progress-bar" />
         </div>
-
-        {/* Text Positioning Panel */}
-        <div className="loader-text-panel">
-          <h3 ref={titleRef} className="loader-title" style={{ opacity: 0, transform: "translateY(20px)" }}>
-            We are your next growth partner
-          </h3>
-          <p ref={descRef} className="loader-desc" style={{ opacity: 0, transform: "translateY(20px)" }}>
-            We develop digital products and premium design systems that are clean, fast, and search-optimized.
-          </p>
-        </div>
-
-        {/* Highlight Bullets */}
-        <ul ref={bulletsRef} className="loader-bullets" style={{ opacity: 0, transform: "translateY(20px)" }}>
-          {[
-            "Lead Generation",
-            "100% SEO",
-            "Top Ranking",
-            "Responsive Design",
-          ].map((item) => (
-            <li key={item} className="loader-bullet-item">
-              <span className="loader-bullet-dot" aria-hidden="true" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Rotating Loader Spinner */}
-        <div ref={progressRef} className="loader-spinner-wrap">
-          <svg className="loader-spinner-svg" viewBox="0 0 50 50">
-            <circle className="loader-spinner-circle" cx="25" cy="25" r="20" fill="none" strokeWidth="4.5" />
-          </svg>
-        </div>
-
       </div>
     </div>
   );
