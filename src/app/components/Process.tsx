@@ -134,7 +134,7 @@ const steps: ProcessStep[] = [
     name: "Launch",
     text: "We test, refine, and launch with precision — ensuring everything works flawlessly, everywhere.",
     details: "We run end-to-end browser compatibility testing, speed audits, and accessibility compliance validation (WCAG AA). Once verified, we deploy to production with zero-downtime integration.",
-    image: "/images/grayscale_curves.png",
+    image: "/images/process_dev_engine.png",
     icon: (
       <svg
         width="18"
@@ -314,11 +314,11 @@ export default function Process() {
             </svg>
           </a>
 
-          {/* Static Grayscale Curves Image */}
+          {/* Digital Development Engine Visual */}
           <div className="process-left-media-wrap">
             <Image
-              src="/images/grayscale_curves.png"
-              alt="Process abstract curves backdrop"
+              src="/images/process_dev_engine.png"
+              alt="Digital engineering and product architecture engine"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
               style={{ objectFit: "cover" }}

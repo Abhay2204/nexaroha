@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -5,21 +7,21 @@ export default function Stats() {
   return (
     <section className="stats-section animate-fade-up delay-300">
       <div className="stat-item">
-        <div className="stat-number text-gradient">50+</div>
+        <div className="stat-number text-gradient">300%+</div>
         <div className="stat-title">
-          AWARD-WINNING <br /> PROJECTS
+          AVERAGE CLIENT <br /> REVENUE GROWTH
         </div>
       </div>
       <div className="stat-item">
-        <div className="stat-number text-gradient">8</div>
+        <div className="stat-number text-gradient">100%</div>
         <div className="stat-title">
-          YEARS OF <br /> DESIGN EXCELLENCE
+          SEO & PERFORMANCE <br /> VITALS PASS RATE
         </div>
       </div>
       <div className="stat-image-container">
         <Image
-          src="/architecture.png"
-          alt="Minimalist Swiss architecture close-up"
+          src="/images/growth_foundation.png"
+          alt="Nexaroha Next-Gen Digital Growth Engine"
           fill
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -29,11 +31,11 @@ export default function Stats() {
       <div className="stat-item">
         <div className="stat-number text-gradient">500+</div>
         <div className="stat-title">
-          GLOBAL <br /> CLIENTS
+          SCALED DIGITAL <br /> PRODUCTS & APPS
         </div>
       </div>
       <div className="stat-arrow-col">
-        <button className="btn-arrow-right" aria-label="Next Section">
+        <button className="btn-arrow-right" aria-label="Explore Capabilities" onClick={() => window.location.href = "#services"}>
           <svg
             width="24"
             height="24"

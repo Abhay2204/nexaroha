@@ -13,21 +13,21 @@ interface Post {
 const posts: Post[] = [
   {
     date: "14 JUL 2026",
-    title: "The Swiss Neo-Grotesque Revival in Digital Interfaces",
-    image: "/architecture.png",
-    link: "#insight- revival",
+    title: "The Next-Gen Acquisition Funnel: Converting Inbound Traffic to Pipeline",
+    image: "/images/growth_foundation.png",
+    link: "#contact",
   },
   {
     date: "02 JUN 2026",
-    title: "Eliminating Layout Shifts for FWA-Grade Frontend Speed",
-    image: "/staircase.png",
-    link: "#insight-cls",
+    title: "100% Core Web Vitals: The Definitive Guide to Frontend Speed & SEO Rank",
+    image: "/images/seo_dominance.png",
+    link: "#contact",
   },
   {
     date: "18 MAY 2026",
-    title: "Crafting Deliberate Design Systems for Global Scales",
-    image: "/sculpture.png",
-    link: "#insight-design-systems",
+    title: "Design Systems That Scale: Building Cohesive Multi-Platform SaaS Products",
+    image: "/images/brand_identity_clean.png",
+    link: "#contact",
   },
 ];
 

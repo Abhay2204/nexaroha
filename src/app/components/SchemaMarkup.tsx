@@ -12,13 +12,13 @@ export default function SchemaMarkup() {
       "https://linkedin.com/company/nexaroha",
       "https://twitter.com/nexaroha"
     ],
-    "description": "Award-winning Swiss digital product design and UI/UX studio."
+    "description": "Nexaroha — Your Next-Gen Growth Partners. Engineering high-converting web applications, UI/UX design systems, and digital growth engines."
   };
 
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Nexaroha",
+    "name": "Nexaroha — Your Next-Gen Growth Partners",
     "url": "https://nexaroha.com",
     "potentialAction": {
       "@type": "SearchAction",
@@ -30,11 +30,11 @@ export default function SchemaMarkup() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "UI/UX Design, Web & Mobile Development, Brand Identity",
+    "serviceType": "Next-Gen Web & App Engineering, UI/UX Design, Lead Generation, SEO Dominance",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Nexaroha",
-      "image": "https://nexaroha.com/architecture.png",
+      "image": "https://nexaroha.com/images/growth_foundation.png",
       "telephone": "+1-000-000-0000",
       "priceRange": "$$$$",
       "address": {

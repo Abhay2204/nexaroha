@@ -364,7 +364,7 @@ export default function CTA() {
           >
             <Image
               src="/images/growth_showcase.png"
-              alt="Device mockups layout on clean white background"
+              alt="Responsive digital showcase devices layout"
               fill
               sizes="(max-width: 1024px) 100vw, 30vw"
               style={{ objectFit: "cover" }}

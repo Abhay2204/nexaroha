@@ -91,26 +91,25 @@ export default function Hero() {
 
         <div className="badge">
           <span className="badge-dot" style={{ backgroundColor: "#4800F4" }} />
-          <span style={{ color: "#4800F4" }}>AWARD-WINNING DESIGN STUDIO</span>
+          <span style={{ color: "#4800F4" }}>YOUR NEXT-GEN GROWTH PARTNERS</span>
         </div>
 
         <h1 style={{
-          fontSize: "clamp(3rem, 5.5vw, 6rem)",
-          lineHeight: 1.0,
+          fontSize: "clamp(2.8rem, 5.2vw, 5.5rem)",
+          lineHeight: 1.05,
           letterSpacing: "-0.04em",
           fontWeight: 800,
           margin: 0,
           position: "relative",
         }}>
-          Designing<br />Digital<br />Experiences<br />
-
+          Engineering<br />Digital Growth<br />
           <div style={{ position: "relative", display: "inline-block", marginTop: "0.15rem" }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: "1rem", whiteSpace: "nowrap" }}>
               <span style={{
                 fontStyle: "italic", fontFamily: "Georgia, serif",
                 background: "linear-gradient(135deg, #4800F4, #E100F5)",
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-              }}>That Matter</span>
+              }}>That Scales</span>
               <span className="hero-arrow-circle" style={{ margin: 0, flexShrink: 0 }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="7" y1="17" x2="17" y2="7" /><polyline points="7 7 17 7 17 17" />
@@ -132,19 +131,19 @@ export default function Hero() {
 
         <div style={{ height: "1px", background: "var(--border)", width: "60px", marginTop: "1rem" }} />
 
-        <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", color: "var(--text-muted)", lineHeight: 1.6, margin: 0, maxWidth: "400px" }}>
-          We craft premium UI/UX, responsive websites, CRMs and e-commerce stores for forward-thinking Indian brands. Every pixel tells a story.
+        <p style={{ fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)", color: "var(--text-muted)", lineHeight: 1.6, margin: 0, maxWidth: "420px" }}>
+          We are your next-gen growth partners. We engineer high-converting web applications, pixel-perfect UI/UX design systems, and automated lead generation engines that turn ambitious brands into market leaders.
         </p>
 
         <div className="hero-ctas" style={{ marginTop: "0.5rem" }}>
           <button className="btn-talk" onClick={() => (window.location.href = "#contact")}>
-            <span>Let's Talk</span>
+            <span>Scale Your Brand</span>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
               <line x1="2.5" y1="9.5" x2="9.5" y2="2.5" /><polyline points="4 2 9.5 2 9.5 7.5" />
             </svg>
           </button>
           <a href="#work" className="btn-work-text">
-            <span className="underline-text">View Our Work</span>
+            <span className="underline-text">View Case Studies</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>

@@ -13,21 +13,21 @@ interface PhilosophyPillar {
 const pillars: PhilosophyPillar[] = [
   {
     num: "01",
-    title: "Human First",
-    desc: "We design for emotions, connections, and accessibility. Every interface should feel intuitive, welcoming, and serve human needs first.",
-    image: "/staircase.png",
+    title: "Conversion-Led Design",
+    desc: "Every layout, CTA, and micro-interaction is engineered with clear intent—removing friction and turning visitors into high-value customers.",
+    image: "/images/growth_foundation.png",
   },
   {
     num: "02",
-    title: "Purpose Driven",
-    desc: "Form follows function. We construct solutions that drive actual metrics, solve real business problems, and deliver meaningful outcomes.",
-    image: "/sculpture.png",
+    title: "Next-Gen Tech Performance",
+    desc: "Sub-second load times, 100% Core Web Vitals, and clean modular Next.js architectures that scale effortlessly as your company grows.",
+    image: "/images/process_dev_engine.png",
   },
   {
     num: "03",
-    title: "Timeless & Obsessive",
-    desc: "We create with longevity in mind, obsessing over micro-details—from typography kerning to layout spacing—to build digital products that endure.",
-    image: "/architecture.png",
+    title: "Obsessive ROI & Scale",
+    desc: "We align directly with your growth metrics—building search dominance, automated pipelines, and digital products that drive compounding revenue.",
+    image: "/images/device_mockup_clean.png",
   },
 ];
 
@@ -42,19 +42,19 @@ export default function Philosophy() {
         <div className="sticky-sidebar reveal-fade-in">
           <div className="badge">
             <span className="badge-dot" style={{ backgroundColor: "#4800F4" }} />
-            <span style={{ color: "#4800F4" }}>Our Philosophy</span>
+            <span style={{ color: "#4800F4" }}>Our Philosophy // Growth Principles</span>
           </div>
           <h2
             className="fw-headline"
             style={{
-              fontSize: "3.5rem",
-              fontWeight: 500,
+              fontSize: "clamp(2.4rem, 4vw, 3.5rem)",
+              fontWeight: 700,
               letterSpacing: "-0.04em",
               lineHeight: 1.1,
               marginBottom: "1.5rem",
             }}
           >
-            Good design<br />isn't just seen.<br />
+            Engineering growth.<br />
             <span
               style={{
                 fontStyle: "italic",
@@ -65,12 +65,11 @@ export default function Philosophy() {
                 backgroundClip: "text",
               }}
             >
-              It's felt.
+              Designing dominance.
             </span>
           </h2>
           <p className="fw-description" style={{ marginBottom: "2.5rem" }}>
-            We believe great digital experiences are built on clarity, purpose and attention to detail.
-            Our work is guided by principles that put people first and deliver lasting value.
+            We believe digital products shouldn't just look good—they must perform. As your next-gen growth partners, we construct high-speed, conversion-focused digital engines that drive lasting market leadership.
           </p>
 
           <a

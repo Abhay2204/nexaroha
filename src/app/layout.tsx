@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nexaroha | Award-Winning Digital Design Studio",
-  description: "We craft premium user interfaces and digital experiences for forward-thinking brands. Minimalist Swiss design aesthetics meets robust modern engineering.",
+  title: "Nexaroha — Your Next-Gen Growth Partners | Web, UI/UX & Lead Gen",
+  description: "We are your next-gen growth partners. We engineer high-converting web applications, pixel-perfect UI/UX design systems, and automated lead generation engines.",
 };
 
 export default function RootLayout({

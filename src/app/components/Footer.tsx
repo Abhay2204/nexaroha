@@ -41,7 +41,7 @@ export default function Footer() {
               <span style={{ fontSize: "1.25rem", fontWeight: 650, letterSpacing: "-0.02em" }}>Nexaroha</span>
             </div>
             <p style={{ fontSize: "0.95rem", lineHeight: 1.6, color: "var(--text-muted)", maxWidth: "280px" }}>
-              India's premium digital design & development studio. Crafting pixel-perfect websites, CRMs, and e-commerce experiences.
+              Your next-gen growth partners. Crafting high-converting web applications, pixel-perfect UI/UX design systems, and digital revenue engines.
             </p>
             {/* India flag + city */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
